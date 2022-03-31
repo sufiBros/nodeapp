@@ -1,0 +1,5 @@
+export const AUTH_CONFIG = {
+	SALT_ROUNDS: 7,
+	SECRET_JWT: "a9087sdfz807Z/=FD",
+	PASSWORD_LENGTH: 8,
+};
