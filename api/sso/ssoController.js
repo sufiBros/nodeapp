@@ -1,7 +1,6 @@
 import { ERRORS, ERROR_MESSAGES, ENTITY, OPERATION, ServerError, Exception } from "../../middleware/errorHandler.js";
 import User from "../user/userModel.js";
 import { UserController } from "../user/userController.js";
-import Encryptor from "../../common/algorithms/crypto.js";
 
 export class SsoController {
 	constructor() {}
@@ -25,8 +24,7 @@ export class SsoController {
 				let now = new Date();
 				let after = new Date(now.getTime() + 3 * 60000);
 				await user.save();
-				let encryptor = new Encryptor("aes-256-ctr");
-				let token = encryptor.encrypt(`${user.email}##${after.getTime()}`);
+				let token = `${user.email}##${after.getTime()}`; //SSO: encrypt it
 				return next(null, { redirect: true, url: "/sso/" + token });
 			} else {
 				if (isExpired) {
@@ -46,8 +44,8 @@ export class SsoController {
 			if (!token) {
 				throw new Error(ERROR_MESSAGES.INVALID_REQUEST_PARAMS);
 			}
-			let encryptor = new Encryptor("aes-256-ctr");
-			let tokenParams = encryptor.decrypt(token).split("##");
+		
+			let tokenParams = token.split("##");
 			let email = tokenParams[0];
 			let timestamp = parseInt(tokenParams[1]);
 			let isExpired = new Date(timestamp).valueOf() < new Date().valueOf();
