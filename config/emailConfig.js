@@ -1,5 +1,3 @@
-import { Format, _t } from "../common/translate.js";
-
 export const EMAIL_CONFIG = {
 	/**
 	 * TODO: replace with actual email adresses
