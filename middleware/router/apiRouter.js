@@ -8,6 +8,7 @@ export class ApiRouter {
 
 			//registering route
 			this.routes[route.method.toLowerCase()](route.path, route.auth, queryHandler(route.controllerFunction, route.params));
+			// equivalent to: routes.get("/path",()=>{auth function}, ()=>{api function})
 		});
 	}
 }

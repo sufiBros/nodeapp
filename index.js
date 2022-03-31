@@ -11,6 +11,7 @@ import { requestHandler } from "./middleware/requestHandler.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import fileUpload from "express-fileupload";
 import path from "path";
+
 const __dirname = path.resolve();
 const MongoStore = connectMongo;
 const app = express();
@@ -26,7 +27,7 @@ app.use(cors());
 app.use(fileUpload());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
-//to get json data
+
 // support parsing of application/json type post data
 app.use(bodyParser.json());
 app.use(cookieParser());

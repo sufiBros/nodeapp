@@ -45,7 +45,7 @@ export class SsoController {
 				throw new Error(ERROR_MESSAGES.INVALID_REQUEST_PARAMS);
 			}
 		
-			let tokenParams = token.split("##");
+			let tokenParams = token.split("##"); // decrypt it
 			let email = tokenParams[0];
 			let timestamp = parseInt(tokenParams[1]);
 			let isExpired = new Date(timestamp).valueOf() < new Date().valueOf();
