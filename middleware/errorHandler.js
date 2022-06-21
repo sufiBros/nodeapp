@@ -185,4 +185,5 @@ export const ENTITY = {
 	Pdf: "the pdf file", //load
 	Csv: "the csv file", //download
 	Email: "the email", // sending
+	None: ""
 };

@@ -9,11 +9,9 @@ export const requestHandler = (req, res, next) => {
 	try {
 		if (
 			!isRequestValid(req) ||
-			!res ||
-			(req.params.hasOwnProperty("id") && !req.params.id) ||
-			(req.params.hasOwnProperty("userId") && !req.params.userId)
+			!res
 			/**
-			 * check other necessary request params
+			 * check other necessary request params for examples any custom headers e.t.c
 			 */
 		) {
 			return next(new ServerError(ERRORS.BAD_REQUEST_400, OPERATION.OTHER, ENTITY.None, ERROR_MESSAGES.INTERNAL_SERVER_ERROR, ERROR_MESSAGES.INVALID_REQUEST_PARAMS));
